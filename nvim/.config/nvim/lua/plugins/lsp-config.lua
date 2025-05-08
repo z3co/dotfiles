@@ -29,7 +29,7 @@ return {
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
       end
       local lspconfig = require('lspconfig')
-      for _, server in pairs({ 'eslint', 'ts_ls', 'lua_ls' }) do
+      for _, server in pairs({ 'ts_ls', 'lua_ls' }) do
         lspconfig[server].setup({
           capabilities = lsp_capabilities,
           on_attach = lsp_on_attach,

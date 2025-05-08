@@ -25,6 +25,7 @@ bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
 
 alias ll="ls --color -lArt"
+alias ls="ls -l --color"
 alias tf="tmuxifier"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
 

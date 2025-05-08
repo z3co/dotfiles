@@ -5,9 +5,8 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim" },
-  config = function() 
+  config = function()
     vim.keymap.set('n', '<leader>e', ':Neotree filesystem focus<CR>', {})
     vim.keymap.set('n', '<C-n>', ':Neotree filesystem toggle<CR>', {})
   end
 }
-
