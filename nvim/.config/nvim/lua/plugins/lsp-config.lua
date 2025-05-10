@@ -1,21 +1,24 @@
 return {
   {
     "williamboman/mason.nvim",
+    lazy = false,
     config = function()
       require("mason").setup()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    lazy = false,
-    opts = {
-      auto_install = true,
-    },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "lua_ls", "ts_ls" }
+      })
+    end
   },
   {
     -- use official lspconfig package (and enable completion):
     'neovim/nvim-lspconfig',
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+    lazy = false,
     config = function()
       local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lsp_on_attach = function(client, bufnr)
@@ -27,6 +30,7 @@ return {
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
         vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+        vim.keymap.set({ "n" }, "gK", vim.lsp.buf.code_action, {})
       end
       local lspconfig = require('lspconfig')
       for _, server in pairs({ 'ts_ls', 'lua_ls' }) do
