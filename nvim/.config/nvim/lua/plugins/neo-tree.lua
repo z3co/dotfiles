@@ -32,12 +32,10 @@ return {
       },
       filesystem = {
         filtered_items = {
-          hide_gitignored = false,
-          hide_by_name = {
-            "node_modules",
-            "next-env.d.ts",
-            "tsconfig.tsbuildinfo",
-          }
+          always_show_by_pattern = {
+            ".env*",
+            ".gitignore"
+          },
         }
       }
     })
