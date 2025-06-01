@@ -54,7 +54,3 @@ The recommended way to use these dotfiles is with the [z3co/dev-env](https://git
 ## Credits
 
 Inspired by community best practices and other dotfiles collections.
-
-## License
-
-MIT
