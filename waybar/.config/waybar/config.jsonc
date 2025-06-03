@@ -22,11 +22,6 @@
     "format-icons": ["", "", "", "", ""],
     "tooltip-format": "{time}"
   },
-  "custom/exit": {
-    "format": "<span size='13000' foreground='#f5e0dc'>⏻</span>   ",
-    "on-click": "wlogout",
-    "tooltip-format": "Power Menu"
-  },
   "network": {
     "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>{essid}",
     "format-ethernet": "<span size='13000' foreground='#f5e0dc'> </span> Ethernet",
