@@ -16,9 +16,20 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help, bufopts)
+			vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover)
 			vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format)
 			vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "gopls" })
+			-- Solve warnings in neovim config
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true)
+						}
+					}
+				}
+			})
 		end
 	},
 	{
