@@ -4,7 +4,7 @@ return {
 		event = "InsertEnter",
 		config = function()
 			require("nvim-autopairs").setup({})
-		end
+		end,
 	},
 	{
 		"williamboman/mason.nvim",
@@ -18,19 +18,19 @@ return {
 		config = function()
 			vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover)
-			vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format)
+			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
 			vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "gopls" })
 			-- Solve warnings in neovim config
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
 						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true)
-						}
-					}
-				}
+							library = vim.api.nvim_get_runtime_file("", true),
+						},
+					},
+				},
 			})
-		end
+		end,
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
@@ -47,10 +47,6 @@ return {
 			local cmp = require("cmp")
 
 			cmp.setup({
-				snippet = {
-					expand = function(args)
-					end,
-				},
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = {
@@ -67,13 +63,32 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping.confirm({ select = false }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 				}, {
 					{ name = "buffer" },
 				}),
+			})
+		end,
+	},
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvimtools/none-ls-extras.nvim",
+		},
+		config = function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.prettier,
+					null_ls.builtins.formatting.stylua,
+					require("none-ls.diagnostics.eslint_d"),
+					null_ls.builtins.formatting.gofumpt,
+					null_ls.builtins.diagnostics.golangci_lint,
+				},
 			})
 		end,
 	},
