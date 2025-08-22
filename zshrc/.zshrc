@@ -2,14 +2,18 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
+
+# Set path
+export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+
+# For virtualization with KVM/QEMU
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(tmuxifier init -)"
 
+# Install zinit plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
@@ -19,17 +23,23 @@ autoload -U compinit && compinit
 
 zinit cdreplay -q
 
+# Source oh-my-psh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.toml)"
 
+# Keybind for navigating history
 bindkey -e
 bindkey "^p" history-search-backward
 bindkey "^n" history-search-forward
 
+# Set alias and exports
 alias ll="ls --color -lArt"
 alias ls="ls -l --color"
-alias tf="tmuxifier"
 alias inv='nvim $(fzf -m --preview="bat --color=always {}")'
+export EDITOR="nvim"
+export MANPAGER="nvim +Man!"
 
+
+# Set History options
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
