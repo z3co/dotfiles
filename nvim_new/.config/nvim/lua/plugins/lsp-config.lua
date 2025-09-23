@@ -19,7 +19,7 @@ return {
 			vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover)
 			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
-			vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "gopls" })
+			vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "gopls", "html" })
 			-- Solve warnings in neovim config
 			vim.lsp.config("lua_ls", {
 				settings = {
