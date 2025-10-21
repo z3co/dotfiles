@@ -6,6 +6,14 @@ return {
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", bufopts)
 			vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", bufopts)
+			local TypstExportPicker = require("typst-export-picker")
+
+			vim.keymap.set(
+				"n",
+				"<leader>fe",
+				TypstExportPicker.open_export_picker,
+				{ desc = "Open custom color picker" }
+			)
 		end,
 	},
 	{
@@ -15,5 +23,5 @@ return {
 			oil.setup()
 			vim.keymap.set("n", "<leader>e", oil.toggle_float)
 		end,
-	}
+	},
 }

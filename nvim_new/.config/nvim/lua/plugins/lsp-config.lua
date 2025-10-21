@@ -19,7 +19,7 @@ return {
 			vim.keymap.set({ "n", "i" }, "<C-k>", vim.lsp.buf.signature_help)
 			vim.keymap.set("n", "K", vim.lsp.buf.hover)
 			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
-			vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "gopls", "html" })
+			vim.lsp.enable({ "lua_ls", "ts_ls", "tailwindcss", "gopls", "html", "tinymist" })
 			-- Solve warnings in neovim config
 			vim.lsp.config("lua_ls", {
 				settings = {
@@ -35,7 +35,7 @@ return {
 	{
 		"mason-org/mason-lspconfig.nvim",
 		opts = {
-			ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", "gopls" },
+			ensure_installed = { "lua_ls", "ts_ls", "tailwindcss", "gopls", "tinymist" },
 		},
 	},
 	"hrsh7th/cmp-nvim-lsp",
