@@ -1,8 +1,12 @@
 return {
 	{
 		"echasnovski/mini.pick",
+		dependencies = {
+			"nvim-mini/mini.icons",
+		},
 		config = function()
 			require("mini.pick").setup()
+			require("mini.icons").setup()
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			vim.keymap.set("n", "<leader>ff", ":Pick files<CR>", bufopts)
 			vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", bufopts)
